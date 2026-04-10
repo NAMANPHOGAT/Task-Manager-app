@@ -1,0 +1,10 @@
+{
+  "name": "task-manager-app",
+  "version": "1.0.0",
+  "description": "Simple full stack task manager",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
