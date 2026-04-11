@@ -1,7 +1,43 @@
 :root {
+  --bg: linear-gradient(145deg, #eef2ff, #f8fafc);
+  --container-bg: #ffffffcc;
+  --text: #111827;
+  --muted: #6b7280;
+  --card-border: #e5e7eb;
+  --card-shadow: rgba(37, 99, 235, 0.08);
+  --input-border: #d1d5db;
+  --primary: #2563eb;
+  --primary-soft: #93c5fd;
+  --primary-text: #1e3a8a;
+  --summary-bg: #eff6ff;
+  --summary-border: #bfdbfe;
+  --summary-text: #1d4ed8;
+  --task-bg: #fff;
+  --empty-bg: #fafafa;
+}
+
+:root[data-theme='dark'] {
+  --bg: linear-gradient(145deg, #0f172a, #111827);
+  --container-bg: rgba(17, 24, 39, 0.92);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --card-border: #374151;
+  --card-shadow: rgba(15, 23, 42, 0.45);
+  --input-border: #4b5563;
+  --primary: #3b82f6;
+  --primary-soft: #1f2937;
+  --primary-text: #bfdbfe;
+  --summary-bg: #1e293b;
+  --summary-border: #334155;
+  --summary-text: #93c5fd;
+  --task-bg: #111827;
+  --empty-bg: #0b1220;
+}
+
+:root {
   font-family: Inter, Segoe UI, Arial, sans-serif;
-  color: #111827;
-  background: linear-gradient(145deg, #eef2ff, #f8fafc);
+  color: var(--text);
+  background: var(--bg);
 }
 
 * {
@@ -14,16 +50,17 @@ body {
   display: grid;
   place-items: center;
   padding: 20px;
+  background: var(--bg);
 }
 
 .container {
   width: min(760px, 96vw);
-  background: #ffffffcc;
-  backdrop-filter: blur(4px);
-  border: 1px solid #e5e7eb;
+  background: var(--container-bg);
+  border: 1px solid var(--card-border);
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 16px 40px var(--card-shadow);
+  backdrop-filter: blur(6px);
 }
 
 .header {
@@ -34,6 +71,12 @@ body {
   margin-bottom: 14px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
 h1 {
   margin: 0;
   font-size: 1.8rem;
@@ -41,12 +84,22 @@ h1 {
 
 .subtitle {
   margin: 6px 0 0;
-  color: #6b7280;
+  color: var(--muted);
+}
+
+.theme-toggle {
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .summary {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: var(--summary-bg);
+  border: 1px solid var(--summary-border);
   border-radius: 12px;
   padding: 10px 14px;
   min-width: 160px;
@@ -54,7 +107,7 @@ h1 {
 
 .summary p {
   margin: 4px 0;
-  color: #1d4ed8;
+  color: var(--summary-text);
 }
 
 .task-form {
@@ -65,14 +118,16 @@ h1 {
 
 .task-form input {
   flex: 1;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--input-border);
   border-radius: 10px;
   padding: 12px;
   outline: none;
+  color: var(--text);
+  background: transparent;
 }
 
 .task-form input:focus {
-  border-color: #3b82f6;
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
@@ -97,7 +152,7 @@ button:disabled {
   padding: 10px 12px;
   cursor: pointer;
   color: white;
-  background: #2563eb;
+  background: var(--primary);
   font-weight: 600;
 }
 
@@ -108,19 +163,20 @@ button:disabled {
 }
 
 .filter-btn {
-  background: #93c5fd;
-  color: #1e3a8a;
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  border: 1px solid var(--card-border);
 }
 
 .filter-btn.active {
-  background: #2563eb;
+  background: var(--primary);
   color: #ffffff;
 }
 
 .status {
   min-height: 1.2rem;
   margin: 10px 0;
-  color: #4b5563;
+  color: var(--muted);
 }
 
 .task-list {
@@ -135,10 +191,10 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 12px;
-  background: #fff;
+  background: var(--task-bg);
 }
 
 .task-title {
@@ -147,7 +203,7 @@ button:disabled {
 
 .task-title.completed {
   text-decoration: line-through;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .task-actions {
@@ -164,12 +220,12 @@ button:disabled {
 }
 
 .empty {
-  color: #6b7280;
+  color: var(--muted);
   text-align: center;
-  border: 1px dashed #d1d5db;
+  border: 1px dashed var(--input-border);
   border-radius: 10px;
   padding: 14px;
-  background: #fafafa;
+  background: var(--empty-bg);
 }
 
 @media (max-width: 600px) {
@@ -177,5 +233,11 @@ button:disabled {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 }

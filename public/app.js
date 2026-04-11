@@ -6,6 +6,7 @@ const totalCountEl = document.getElementById('total-count');
 const completedCountEl = document.getElementById('completed-count');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const addTaskButton = taskForm.querySelector('button[type="submit"]');
+const themeToggleButton = document.getElementById('theme-toggle');
 
 let currentFilter = 'all';
 let allTasks = [];
@@ -19,6 +20,18 @@ const setLoading = (value) => {
   isLoading = value;
   addTaskButton.disabled = value;
   addTaskButton.textContent = value ? 'Adding...' : 'Add Task';
+};
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute('data-theme', theme);
+  themeToggleButton.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+};
+
+const initializeTheme = () => {
+  const savedTheme = localStorage.getItem('task-theme');
+  const preferredDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (preferredDark ? 'dark' : 'light');
+  applyTheme(initialTheme);
 };
 
 const request = async (url, options = {}) => {
@@ -143,6 +156,13 @@ filterButtons.forEach((button) => {
   });
 });
 
+themeToggleButton.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+  localStorage.setItem('task-theme', nextTheme);
+  applyTheme(nextTheme);
+});
+
 taskForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -172,4 +192,5 @@ taskForm.addEventListener('submit', async (event) => {
   }
 });
 
+initializeTheme();
 loadTasks();

@@ -10,6 +10,7 @@ A simple full stack Task Manager application with a Node.js backend (no external
 - Delete a task
 - REST API with validation and JSON responses
 - Loading and error feedback in the UI
+- Light/Dark mode toggle with preference saved in browser storage
 
 ## Tech Stack
 
