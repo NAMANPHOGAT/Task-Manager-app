@@ -8,12 +8,27 @@
 </head>
 <body>
   <main class="container">
-    <h1>Task Manager</h1>
+    <header class="header">
+      <div>
+        <h1>Task Manager</h1>
+        <p class="subtitle">Plan your day and keep progress visible.</p>
+      </div>
+      <div class="summary" id="summary-card">
+        <p><strong id="total-count">0</strong> tasks</p>
+        <p><strong id="completed-count">0</strong> completed</p>
+      </div>
+    </header>
 
     <form id="task-form" class="task-form">
-      <input id="task-input" type="text" placeholder="Enter a task" aria-label="Task title" required />
+      <input id="task-input" type="text" placeholder="What do you need to do?" aria-label="Task title" required />
       <button type="submit">Add Task</button>
     </form>
+
+    <section class="toolbar" aria-label="Task filters">
+      <button class="filter-btn active" data-filter="all" type="button">All</button>
+      <button class="filter-btn" data-filter="active" type="button">Active</button>
+      <button class="filter-btn" data-filter="completed" type="button">Completed</button>
+    </section>
 
     <p id="status" class="status" role="status" aria-live="polite"></p>
 
